@@ -29,7 +29,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	input = Input::GetInstance();
 	input->Initialize();
 
-
 	// オーディオの初期化
 	audio = Audio::GetInstance();
 	audio->Initialize();

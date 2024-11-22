@@ -1,20 +1,23 @@
 #pragma once
+#include "Input.h"
 
 
 class Player
 {
-public:
+public:	// メンバ関数
 	void playerInitialize();	// 初期化
 	void playerUpdate();		// 更新
+	void playerMove();			// 動作
+	void playerReset();			// リセット
 	void playerDraw();			// 描画
-private:
-	int playerX;		// X軸
-	int playerY;		// Y軸
-	int playersizeX;	// プレイヤーサイズX軸
-	int playersizeY;	// プレイヤーサイズY軸
-	int playerspeed;	// スピード値
-	int playerflag;		// 生存フラグ
+private: // メンバ変数
+	int playerX;			// X軸
+	int playerY;			// Y軸
+	int playerR = 15;		// 判定
+	int playerSizeX;		// X軸サイズ変更
+	int playerSizeY;		// Y軸サイズ変更
+	int playerSpeed;		// スピード値
+	int playerFlag = 0;		// 生存フラグ
 
-	// 画像
-	int playerGraph = LoadGraph("Resources/Player.png");
+	Input* input_ = nullptr;
 };

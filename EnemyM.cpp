@@ -3,11 +3,8 @@
 
 EnemyM::EnemyM()
 {
-    centerX = 1280;//中心座標X
-    centerY = 360;//中心座標Y
-    sizeX = 100;//大きさX
-    sizeY = 100;//大きさY
-    HitPoint = 1;//体力
+    x = 1280;//中心座標X
+    y = 360;//中心座標Y
     LFmode = 0;//形態状態
 }
 
@@ -20,12 +17,12 @@ void EnemyM::EnemyUpdate()
 {
     if (LFmode == 1)
     {
-        centerX -= 5;
+        x -= 5;
     }
 
     else if (LFmode == 2)
     {
-        centerX -= 5;
+        x -= 5;
         //地面に張り付く挙動
     }
 }

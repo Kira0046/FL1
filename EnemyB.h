@@ -2,8 +2,7 @@
 class EnemyB
 {
 private:
-	struct EnemyBullet
-	{
+	
 		int x = 0;
 		int y = 0;
 		int sizeX = 0;
@@ -11,8 +10,7 @@ private:
 		int speed = 0;
 		int AliveFlag = 0;
 
-		struct EnemyBullet* next;
-	};
+		//EnemyB* next;
 
 public:
 	EnemyB();

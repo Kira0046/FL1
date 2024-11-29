@@ -3,7 +3,8 @@
 
 EnemyB::EnemyB()
 {
-
+	x = 0;
+	y = 0;
 }
 
 EnemyB::~EnemyB()
@@ -31,3 +32,4 @@ void EnemyB::bulletMove(int pcx, int pcy, int ebx, int eby)
 	PEy = pcy - eby;
 
 	PE = sqrt(PEx * PEx + PEy * PEy);
+}

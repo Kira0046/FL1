@@ -1,10 +1,10 @@
 #include "EnemyB.h"
 #include<math.h>
 
-EnemyB::EnemyB()
+EnemyB::EnemyB(int x, int y)
 {
-	x = 0;
-	y = 0;
+	centerX = x;
+	centerY = y;
 }
 
 EnemyB::~EnemyB()

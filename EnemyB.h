@@ -3,8 +3,8 @@ class EnemyB
 {
 private:
 	
-		int x = 0;
-		int y = 0;
+		int centerX = 0;
+		int centerY = 0;
 		int sizeX = 0;
 		int sizeY = 0;
 		int speed = 0;
@@ -13,7 +13,7 @@ private:
 		//EnemyB* next;
 
 public:
-	EnemyB();
+	EnemyB(int x,int y);
 	~EnemyB();
 
 	void bulletUpdate();

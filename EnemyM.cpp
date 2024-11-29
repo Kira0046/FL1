@@ -1,11 +1,15 @@
 #include "EnemyM.h"
 #include"EnemyB.h"
 
-EnemyM::EnemyM()
+EnemyM::EnemyM(const int x, const int y, const int LFM)
 {
-    x = 1280;//中心座標X
-    y = 360;//中心座標Y
-    LFmode = 0;//形態状態
+    centerX = x;//中心座標X
+    centerY = y;//中心座標Y
+    sizeX = 100;//大きさX
+    sizeY = 100;//大きさY
+    HitPoint = 1;//体力
+    speed = 5;//速度
+    LFmode = LFM;//形態状態
 }
 
 EnemyM::~EnemyM()
@@ -17,12 +21,12 @@ void EnemyM::EnemyUpdate()
 {
     if (LFmode == 1)
     {
-        x -= 5;
+        centerX -= 5;
     }
 
     else if (LFmode == 2)
     {
-        x -= 5;
+        centerX -= 5;
         //地面に張り付く挙動
     }
 }

@@ -12,7 +12,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	AxisIndicator* axisIndicator = nullptr;
 	PrimitiveDrawer* primitiveDrawer = nullptr;
 
-	GameScene* gameScene = new GameScene();
+	
 
 	// ゲームウィンドウの作成
 	win = WinApp::GetInstance();
@@ -51,6 +51,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	primitiveDrawer = PrimitiveDrawer::GetInstance();
 	primitiveDrawer->Initialize();
+
+	GameScene* gameScene = new GameScene();
 #pragma endregion
 
 	// メインループ
@@ -76,16 +78,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		dxCommon->PreDraw();
 
 
-		//
-		gameScene->gameSceneDraw();
-
-
 		// 軸表示の描画
 		axisIndicator->Draw();
 		// プリミティブ描画のリセット
 		primitiveDrawer->Reset();
 		// ImGui描画
 		imguiManager->Draw();
+		//
+		gameScene->gameSceneDraw();
 		// 描画終了
 		dxCommon->PostDraw();
 	}
@@ -95,6 +95,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	audio->Finalize();
 	// ImGui解放
 	imguiManager->Finalize();
+
+	//
+	gameScene->~GameScene();
 
 	// ゲームウィンドウの破棄
 	win->TerminateGameWindow();

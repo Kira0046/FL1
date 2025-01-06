@@ -12,13 +12,25 @@ EnemyMain::EnemyMain(int x, int y, int LFM) {
 	HitPoint = 1; // 体力
 	speed = 5;    // 速度
 	LFmode = LFM; // 形態状態
-	
+
+	win = WinApp::GetInstance();
+	//win->CreateGameWindow();
+	//dxCommon_->Initialize(win);
+	dxCommon_->GetInstance();
+
 	textureManager = TextureManager::GetInstance();
-	//textureManager->Initialize()
-	textureHandle_ = textureManager->Load("gazou1.png");
+	textureManager->Initialize(dxCommon_->GetDevice());
+	textureHandle_ = textureManager->Load("./Resources/gazou1.png");
 
 	//sprite = nullptr;
-	sprite_ = Sprite::Create(textureHandle_, {100, 100});
+	//sprite_->Initialize();
+	ImGuiManager* imguiManager = ImGuiManager::GetInstance();
+	imguiManager->Initialize(win, dxCommon_);
+
+	sprite_=Sprite::Create(textureHandle_, {100, 100}, 
+		{1, 1, 1, 1}, {0.0f, 0.0f}, false, false);
+
+	
 
 	bulletlist;
 }
@@ -42,7 +54,15 @@ void EnemyMain::EnemyUpdate() {
 	
 }
 
-void EnemyMain::EnemyDraw() { sprite_->Draw(); }
+void EnemyMain::EnemyDraw() {
+	ID3D12GraphicsCommandList* commandList
+		= dxCommon_->GetCommandList();
+	sprite_->PreDraw(commandList);
+
+	sprite_->Draw(); 
+
+	sprite_->PostDraw();
+}
 
 void EnemyMain::LandEnemyMove(int stageY) { centerY = stageY; }
 

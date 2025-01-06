@@ -25,6 +25,9 @@ private:
 	//Sprite* sprite = nullptr;
 	Sprite* sprite_ = nullptr;
 
+	DirectXCommon* dxCommon_ = DirectXCommon::GetInstance();
+	WinApp* win = nullptr;
+
 	// リスト
 	std::list<EnemyBullet*> bulletlist
 	 = std::list<EnemyBullet*>();

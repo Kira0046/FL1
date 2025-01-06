@@ -1,10 +1,17 @@
 #include "GameScene.h"
 
-GameScene::GameScene() { enemyMain = new EnemyMain(100, 100, 1); }
+GameScene::GameScene() { 
+	enemyMain = new EnemyMain(100, 100, 1); 
+}
 GameScene::~GameScene() { 
 	enemyMain->~EnemyMain();
-	delete enemyMain; }
+	//delete enemyMain; 
+}
 
-void GameScene::gameSceneUpdate() {  enemyMain->EnemyUpdate(); }
+void GameScene::gameSceneUpdate() { 
+	enemyMain->EnemyUpdate(); 
+}
 
-void GameScene::gameSceneDraw() { enemyMain->EnemyDraw(); }
+void GameScene::gameSceneDraw() { 
+	enemyMain->EnemyDraw(); 
+}

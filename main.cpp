@@ -1,4 +1,5 @@
 #include <KamataEngine.h>
+#include <windows.h>
 
 using namespace KamataEngine;
 
@@ -6,6 +7,18 @@ using namespace KamataEngine;
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	WinApp* win = nullptr;
 	DirectXCommon* dxCommon = nullptr;
+	const int window_width = 1280;
+	const int window_heigth = 720;
+
+
+	//ウィンドウクラスの設定
+	WNDCLASSSEX w{};
+	w.cbSize = sizeof(WNDCLASSEX);
+	w.lpfnWndProc = (WNDPROC)WindowProc;
+	w.lpszClassName = L"DirectXGame";
+	w.hInstance = GetModuleHandle(nullptr);
+	w.hCursor = LoadCursor(NULL, IDC_ARROW);
+
 	// 汎用機能
 	Input* input = nullptr;
 	Audio* audio = nullptr;

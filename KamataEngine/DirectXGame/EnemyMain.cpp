@@ -30,7 +30,10 @@ EnemyMain::EnemyMain(int x, int y, int LFM) {
 	sprite_=Sprite::Create(textureHandle_, {100, 100}, 
 		{1, 1, 1, 1}, {0.0f, 0.0f}, false, false);
 
-	
+	EnemyMainPosition = sprite_->GetPosition();
+	EnemyMainPosition.x = (float)centerX;
+	EnemyMainPosition.y = (float)centerY;
+	sprite_->SetPosition(EnemyMainPosition);
 
 	bulletlist;
 }
@@ -43,12 +46,16 @@ EnemyMain::~EnemyMain() {
 void EnemyMain::EnemyUpdate() {
 	if (LFmode == 1) {
 		centerX -= 5;
+		EnemyMainPosition.x = (float)centerX;
+		sprite_->SetPosition(EnemyMainPosition);
 	}
 
 	else if (LFmode == 2) {
 		centerX -= 5;
+		EnemyMainPosition.x = (float)centerX;
 		// 地面に張り付く挙動
 		EnemyMain::LandEnemyMove(5);
+		sprite_->SetPosition(EnemyMainPosition);
 	}
 
 	
@@ -64,7 +71,10 @@ void EnemyMain::EnemyDraw() {
 	sprite_->PostDraw();
 }
 
-void EnemyMain::LandEnemyMove(int stageY) { centerY = stageY; }
+void EnemyMain::LandEnemyMove(int stageY) {
+	centerY = stageY;
+	EnemyMainPosition.y = (float)centerY;
+}
 
 //敵の四隅の座標
 void EnemyMain::EnemyPositionGet(int x, int y, 

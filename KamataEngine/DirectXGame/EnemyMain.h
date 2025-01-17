@@ -17,6 +17,8 @@ private:
 	int speed = 0;    // 速度
 	int LFmode = 0;   // 形態状態
 
+	Vector2 EnemyMainPosition = {0, 0};
+
 	// テクスチャハンドル
 	uint32_t textureHandle_ = 0;
 	TextureManager* textureManager = TextureManager::GetInstance();

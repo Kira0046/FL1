@@ -2,7 +2,7 @@
 #include"EnemyMain.h"
 class GameScene {
 private:
-	EnemyMain* enemyMain = nullptr;
+	EnemyMain* enemyMain[8];
 
 public:
 	GameScene();

@@ -4,16 +4,26 @@
 
 GameScene::GameScene() {
 	srand((unsigned int)time(NULL));
-	enemyMain = new EnemyMain(100, 100, rand() % 2 + 1); }
-GameScene::~GameScene() { 
-	enemyMain->~EnemyMain();
+	for (int i = 0; i < 8; i++) {
+		enemyMain[i] =
+			new EnemyMain(1600+(i * 150), 100, rand() % 2 + 1);
+	}
+	 }
+GameScene::~GameScene() {
+	for (int i = 0; i < 8; i++) {
+		enemyMain[i]->~EnemyMain();
+	}
 	//delete enemyMain; 
 }
 
-void GameScene::gameSceneUpdate() { 
-	enemyMain->EnemyUpdate(); 
+void GameScene::gameSceneUpdate() {
+	for (int i = 0; i < 8; i++) {
+		enemyMain[i]->EnemyUpdate(); 
+	}
 }
 
-void GameScene::gameSceneDraw() { 
-	enemyMain->EnemyDraw(); 
+void GameScene::gameSceneDraw() {
+	for (int i = 0; i < 8; i++) {
+		enemyMain[i]->EnemyDraw();
+	} 
 }

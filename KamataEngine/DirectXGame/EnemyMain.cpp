@@ -54,7 +54,7 @@ void EnemyMain::EnemyUpdate() {
 		centerX -= 5;
 		EnemyMainPosition.x = (float)centerX;
 		// 地面に張り付く挙動
-		EnemyMain::LandEnemyMove(5);
+		EnemyMain::LandEnemyMove(500);
 		sprite_->SetPosition(EnemyMainPosition);
 	}
 
@@ -85,4 +85,10 @@ void EnemyMain::EnemyPositionGet(int x, int y,
 	topX2 = centerX + sizeX / 2;
 	topY1 = centerY - sizeY / 2;
 	topY2 = centerY + sizeY / 2;
+}
+
+//敵の弾を発射
+void EnemyMain::EnemyShot()
+{
+	
 }

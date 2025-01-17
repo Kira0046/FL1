@@ -48,4 +48,7 @@ public:
 	//敵の四隅の座標取得
 	void EnemyPositionGet(int x,int y,
 		int topX1,int topX2, int topY1,int topY2);
+
+	//敵の弾を発射
+	void EnemyShot();
 };

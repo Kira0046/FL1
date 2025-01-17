@@ -1,8 +1,10 @@
 #include "GameScene.h"
 
-GameScene::GameScene() { 
-	enemyMain = new EnemyMain(100, 100, 1); 
-}
+
+
+GameScene::GameScene() {
+	srand((unsigned int)time(NULL));
+	enemyMain = new EnemyMain(100, 100, rand() % 2 + 1); }
 GameScene::~GameScene() { 
 	enemyMain->~EnemyMain();
 	//delete enemyMain; 

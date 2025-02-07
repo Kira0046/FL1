@@ -1,4 +1,10 @@
 #pragma once
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <KamataEngine.h>
+
+using namespace KamataEngine;
 class EnemyBullet {
 
 private:
@@ -7,7 +13,20 @@ private:
 	int sizeX = 0;
 	int sizeY = 0;
 	int speed = 0;
-	int AliveFlag = 0;
+	int AliveFlag = 1;
+
+	Vector2 EnemyBulletPosition = {0, 0};
+
+	// テクスチャハンドル
+	uint32_t textureHandle_1 = 0;
+	TextureManager* textureManager1 = TextureManager::GetInstance();
+
+	// スプライト
+	// Sprite* sprite = nullptr;
+	Sprite* sprite_1 = nullptr;
+
+	DirectXCommon* dxCommon_ = DirectXCommon::GetInstance();
+	WinApp* win = nullptr;
 
 public:
 	EnemyBullet(int x, int y);

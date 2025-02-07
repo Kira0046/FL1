@@ -18,7 +18,7 @@ GameScene::~GameScene() {
 
 void GameScene::gameSceneUpdate() {
 	for (int i = 0; i < 8; i++) {
-		enemyMain[i]->EnemyUpdate(); 
+		enemyMain[i]->EnemyUpdate();
 	}
 }
 

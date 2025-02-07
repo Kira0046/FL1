@@ -16,11 +16,15 @@ private:
 	int HitPoint = 0; // 体力
 	int speed = 0;    // 速度
 	int LFmode = 0;   // 形態状態
+	int enemyBulletFlag = 0; //敵の弾の発射フラグ
 
 	Vector2 EnemyMainPosition = {0, 0};
 
+	//弾の生成
+	EnemyBullet* enemyBullet = nullptr;
+
 	// テクスチャハンドル
-	uint32_t textureHandle_ = 0;
+	uint32_t textureHandle_ = 1000;
 	TextureManager* textureManager = TextureManager::GetInstance();
 
 	//スプライト
@@ -33,6 +37,8 @@ private:
 	// リスト
 	std::list<EnemyBullet*> bulletlist
 	 = std::list<EnemyBullet*>();
+
+	Input* input = nullptr;
 
 public:
 	// リスト初期化

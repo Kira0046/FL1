@@ -13,6 +13,10 @@ EnemyMain::EnemyMain(int x, int y, int LFM) {
 	speed = 5;    // 速度
 	LFmode = LFM; // 形態状態
 
+	enemyBulletFlag = 0;//敵の弾の発射フラグ
+
+	enemyBullet = nullptr;//弾の生成
+
 	win = WinApp::GetInstance();
 	//win->CreateGameWindow();
 	//dxCommon_->Initialize(win);
@@ -24,8 +28,8 @@ EnemyMain::EnemyMain(int x, int y, int LFM) {
 
 	//sprite = nullptr;
 	//sprite_->Initialize();
-	ImGuiManager* imguiManager = ImGuiManager::GetInstance();
-	imguiManager->Initialize(win, dxCommon_);
+	/*ImGuiManager* imguiManager = ImGuiManager::GetInstance();
+	imguiManager->Initialize(win, dxCommon_);*/
 
 	sprite_=Sprite::Create(textureHandle_, {100, 100}, 
 		{1, 1, 1, 1}, {0.0f, 0.0f}, false, false);
@@ -36,14 +40,29 @@ EnemyMain::EnemyMain(int x, int y, int LFM) {
 	sprite_->SetPosition(EnemyMainPosition);
 
 	bulletlist;
+
+	input;
+	input=Input::GetInstance();
+	input->Initialize();
 }
 
 EnemyMain::~EnemyMain() { 
-	delete sprite_; 
+	delete sprite_;
 	//delete sprite;
+
+	for (EnemyBullet* pbullet : bulletlist) {
+		if (pbullet != nullptr) {
+			pbullet->~EnemyBullet();
+		}
+	}
+
+	bulletlist.clear();
 }
 
 void EnemyMain::EnemyUpdate() {
+	input->Update();
+	input->GetAllKey();
+
 	if (LFmode == 1) {
 		centerX -= 5;
 		EnemyMainPosition.x = (float)centerX;
@@ -58,7 +77,20 @@ void EnemyMain::EnemyUpdate() {
 		sprite_->SetPosition(EnemyMainPosition);
 	}
 
-	
+	if (input->PushKey(DIK_SPACE))
+	{
+		enemyBulletFlag = 1;
+	}
+
+	if (enemyBulletFlag == 1) {
+		EnemyMain::EnemyShot();
+	}
+
+	for (EnemyBullet* pbullet : bulletlist) {
+		if (pbullet != nullptr) {
+			pbullet->bulletUpdate();
+		}
+	}
 }
 
 void EnemyMain::EnemyDraw() {
@@ -69,6 +101,12 @@ void EnemyMain::EnemyDraw() {
 	sprite_->Draw(); 
 
 	sprite_->PostDraw();
+
+	for (EnemyBullet* pbullet : bulletlist) {
+		if (pbullet != nullptr) {
+			pbullet->bulletDraw();
+		}
+	}
 }
 
 void EnemyMain::LandEnemyMove(int stageY) {
@@ -88,7 +126,7 @@ void EnemyMain::EnemyPositionGet(int x, int y,
 }
 
 //敵の弾を発射
-void EnemyMain::EnemyShot()
-{
-	
+void EnemyMain::EnemyShot() {
+	enemyBullet = new EnemyBullet(centerX, centerY);
+	bulletlist.push_back(enemyBullet);
 }
